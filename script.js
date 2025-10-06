@@ -139,49 +139,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // (removed) quick links handler
 
-    // Contact form: submit via mailto
-    const contactForm = document.getElementById('form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name = (document.getElementById('name')?.value || '').trim();
-            const email = (document.getElementById('email')?.value || '').trim();
-            const type = (document.getElementById('type')?.value || '').trim();
-            const message = (document.getElementById('message')?.value || '').trim();
-
-            const typeLabelMap = { b2b: '業務用取引', recruit: '採用', other: 'その他' };
-            const typeLabel = typeLabelMap[type] || type;
-
-            const subject = `お問い合わせ（${typeLabel}）: ${name || '無記名'}`;
-            const bodyLines = [
-                '以下の内容でお問い合わせが送信されました。',
-                '',
-                `お名前: ${name}`,
-                `メール: ${email}`,
-                `区分: ${typeLabel}`,
-                '',
-                '内容:',
-                message
-            ];
-            const body = bodyLines.join('\n');
-
-            const mailto = `mailto:kyushu-hakataya@kyusyu-hakataya.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            // Set fallback link href (visible under button)
-            const mailtoDirect = document.getElementById('mailto-direct');
-            if (mailtoDirect) mailtoDirect.setAttribute('href', mailto);
-
-            // Try open default mail client
-            window.location.href = mailto;
-
-            // Fallback guidance after short delay
-            setTimeout(() => {
-                const tip = 'メール作成画面が開かない場合は、下の「こちら」をタップしてください。\\nそれでも開かない場合は、kyushu-hakataya@kyusyu-hakataya.com 宛てに直接お送りください。';
-                // Show non-blocking hint for mobile clarity
-                alert(tip);
-            }, 1200);
-        });
+    // If redirected with ?sent=1, show success box
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === '1') {
+        const success = document.getElementById('contact-success');
+        if (success) success.style.display = 'block';
     }
 });
 

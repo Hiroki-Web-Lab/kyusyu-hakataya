@@ -44,7 +44,7 @@
                 </div>
                 <div class="phone-contacts info-box" style="max-width:720px;margin:0 auto 0;">
                     <p class="box-title">メールでのお問い合わせ</p>
-                <form id="form" action="#" method="post" class="contact-form" style="margin:0;">
+                <form id="form" action="/contact_send.php" method="post" class="contact-form" style="margin:0;">
                     <div class="form-row" style="margin-bottom:16px;">
                         <label for="name">お名前</label>
                         <input type="text" id="name" name="name" required style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;">
@@ -67,13 +67,12 @@
                     </div>
                     <div style="text-align:center;">
                         <button type="submit" class="button primary-button">送信する</button>
-                        <p style="margin-top:10px;font-size:0.95rem;color:#555;">
-                            メールが開かない場合は
-                            <a id="mailto-direct" href="mailto:kyushu-hakataya@kyusyu-hakataya.com" style="font-weight:700; color: var(--color-primary); text-decoration: underline;">こちら</a>
-                            をタップしてください。
-                        </p>
                     </div>
                 </form>
+                </div>
+                <div id="contact-success" class="info-box" style="max-width:720px;margin:16px auto 0; display:none;">
+                    <p class="box-title" style="margin-bottom:6px;">送信完了</p>
+                    <p style="margin:0;">お問い合わせを受け付けました。担当者より折り返しご連絡いたします。</p>
                 </div>
             </div>
         </section>
