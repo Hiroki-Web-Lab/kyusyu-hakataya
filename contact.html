@@ -45,6 +45,7 @@
                 <div class="phone-contacts info-box" style="max-width:720px;margin:0 auto 0;">
                     <p class="box-title">メールでのお問い合わせ</p>
                 <form id="form" action="contact_send.php" method="post" class="contact-form" style="margin:0;">
+                    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                     <div class="form-row" style="margin-bottom:16px;">
                         <label for="name">お名前</label>
                         <input type="text" id="name" name="name" required style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;">
@@ -84,6 +85,15 @@
         </div>
     </footer>
 
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=your-recaptcha-site-key"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('your-recaptcha-site-key', {action: 'contact'}).then(function(token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
