@@ -546,6 +546,28 @@ p.subtitle {
     text-align: center;
 }
 
+/* Contact section background */
+.contact-section {
+    background: url('img/istockphoto-1507564276-1024x1024.jpg') no-repeat center center/cover;
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.88) 0%, rgba(250,252,250,0.92) 100%);
+    z-index: 1;
+}
+
+.contact-section .container {
+    position: relative;
+    z-index: 2;
+}
+
 .contact-buttons {
     display: flex;
     justify-content: center;
