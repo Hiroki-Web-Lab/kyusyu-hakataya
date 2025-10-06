@@ -8,9 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$name    = trim($_POST['name'] ?? '');
-$email   = trim($_POST['email'] ?? '');
-$type    = trim($_POST['type'] ?? '');
+// 入力値の取得と検証
+$name = trim($_POST['name'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$type = trim($_POST['type'] ?? '');
 $message = trim($_POST['message'] ?? '');
 
 if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $message === '') {
@@ -22,9 +23,9 @@ if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $message === '
 $labels = [ 'b2b' => '業務用取引', 'recruit' => '採用', 'other' => 'その他' ];
 $typeLabel = $labels[$type] ?? $type;
 
-$to      = 'kyushu-hakataya@kyusyu-hakataya.com';
+$to = 'kyushu-hakataya@kyusyu-hakataya.com';
 $subject = "お問い合わせ（{$typeLabel}）：{$name}";
-$body    = "お名前: {$name}\nメール: {$email}\n区分: {$typeLabel}\n\n内容:\n{$message}\n";
+$body = "お名前: {$name}\nメール: {$email}\n区分: {$typeLabel}\n\n内容:\n{$message}\n";
 
 $headers = [];
 $headers[] = 'From: Kyusyu Hakataya <no-reply@kyusyu-hakataya.com>';
@@ -34,7 +35,7 @@ $headers[] = 'Content-Type: text/plain; charset=UTF-8';
 $ok = mb_send_mail($to, $subject, $body, implode("\r\n", $headers));
 
 if ($ok) {
-    header('Location: /contact.html?sent=1');
+    header('Location: contact.html?sent=1');
     exit;
 }
 
