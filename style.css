@@ -269,19 +269,19 @@ p.subtitle {
 }
 
 .primary-button {
-    background: linear-gradient(135deg, rgba(255, 111, 0, 0.9) 0%, rgba(255, 152, 0, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(255, 111, 0, 0.7) 0%, rgba(255, 152, 0, 0.6) 100%);
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    padding: 18px 40px;
-    border-radius: 50px;
-    box-shadow: 0 8px 25px rgba(255, 111, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    animation: buttonPulse 3s ease-in-out infinite;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    backdrop-filter: blur(10px);
+    padding: 14px 28px;
+    border-radius: 40px;
+    box-shadow: 0 4px 12px rgba(255, 111, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    animation: none;
+    transition: background-color 0.25s ease, opacity 0.25s ease;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(6px);
 }
 
 @keyframes buttonPulse {
@@ -296,10 +296,9 @@ p.subtitle {
 }
 
 .primary-button:hover {
-    background: linear-gradient(135deg, rgba(255, 111, 0, 1) 0%, rgba(255, 152, 0, 0.95) 100%);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(255, 111, 0, 0.4);
-    animation: none;
+    background: linear-gradient(135deg, rgba(255, 111, 0, 0.8) 0%, rgba(255, 152, 0, 0.7) 100%);
+    transform: none;
+    box-shadow: 0 6px 16px rgba(255, 111, 0, 0.22);
 }
 
 /* 会社概要 */
