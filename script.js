@@ -168,13 +168,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const mailto = `mailto:kyushu-hakataya@kyusyu-hakataya.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-            // Open default mail client
+            // Set fallback link href (visible under button)
+            const mailtoDirect = document.getElementById('mailto-direct');
+            if (mailtoDirect) mailtoDirect.setAttribute('href', mailto);
+
+            // Try open default mail client
             window.location.href = mailto;
 
-            // Optional UX: notice in case client blocks mailto
+            // Fallback guidance after short delay
             setTimeout(() => {
-                // If nothing seemed to happen, show hint
-                alert('メール作成画面が開かない場合は、\nkyushu-hakataya@kyusyu-hakataya.com 宛てに直接お送りください。');
+                const tip = 'メール作成画面が開かない場合は、下の「こちら」をタップしてください。\\nそれでも開かない場合は、kyushu-hakataya@kyusyu-hakataya.com 宛てに直接お送りください。';
+                // Show non-blocking hint for mobile clarity
+                alert(tip);
             }, 1200);
         });
     }
