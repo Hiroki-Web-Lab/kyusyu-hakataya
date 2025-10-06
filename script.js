@@ -136,6 +136,15 @@ document.addEventListener('DOMContentLoaded', function() {
             smoothScrollTo('#stores');
         });
     }
+
+    // Contact: quick links set select value
+    document.querySelectorAll('.contact-quick-links a[data-type]').forEach(link => {
+        link.addEventListener('click', () => {
+            const type = link.getAttribute('data-type');
+            const select = document.getElementById('type');
+            if (select) select.value = type;
+        });
+    });
 });
 
 // ウィンドウリサイズ時の処理
