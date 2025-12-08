@@ -29,6 +29,10 @@
 - 店舗情報
 - お問い合わせ
 
+## ドキュメント
+
+- [iPadでCursorを使う方法](docs/CURSOR_ON_IPAD.md) - iPadから本プロジェクトを開発する方法
+
 ## ライセンス
 
 © 1974 - 2024 Kyushu Hakataya Co., Ltd. All Rights Reserved.
