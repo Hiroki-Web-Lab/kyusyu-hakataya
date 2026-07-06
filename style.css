@@ -1,21 +1,3 @@
-.info-box {
-    background: #f8f9fa;
-    border-left: 4px solid var(--color-primary);
-    border-radius: 8px;
-    padding: 18px 20px;
-}
-
-.box-title {
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #2e7d32;
-}
-
-.box-note {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 8px;
-}
 /* 基本リセットとフォント設定 */
 :root {
     --color-primary: #388e3c; /* フレッシュグリーン */
@@ -50,7 +32,7 @@ body {
 }
 
 .bg-light-green {
-    background: url('img/istockphoto-1444391777-1024x1024.jpg') no-repeat center center/cover;
+    background: url('img/quality-bg.webp') no-repeat center center/cover;
     position: relative;
 }
 
@@ -71,7 +53,7 @@ body {
 }
 
 .bg-stores {
-    background: url('img/八田店冷ケース.jpg') no-repeat center center/cover;
+    background: url('img/stores-bg.webp') no-repeat center center/cover;
     position: relative;
 }
 
@@ -127,7 +109,7 @@ p.subtitle {
     padding: 15px 0;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 4000;
 }
 
 .header-content {
@@ -137,9 +119,16 @@ p.subtitle {
 }
 
 .logo img {
-    height: 60px; /* ヘッダーロゴの高さ調整 */
-    max-width: 300px; /* 横長ロゴの最大幅 */
-    object-fit: contain; /* アスペクト比を保持 */
+    height: 60px;
+    max-width: 300px;
+    object-fit: contain;
+}
+
+.logo div {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-family-main);
 }
 
 #nav ul {
@@ -153,6 +142,8 @@ p.subtitle {
     padding: 10px 15px;
     font-weight: 700;
     transition: color 0.3s;
+    position: relative;
+    z-index: 4001;
 }
 
 #nav ul li a:hover {
@@ -160,14 +151,12 @@ p.subtitle {
 }
 
 .menu-toggle {
-    display: none; /* PCでは非表示 */
+    display: none;
 }
 
 /* ヒーローセクション */
 #hero {
-    height: 600px; /* 高さ調整 */
-    background: linear-gradient(135deg, rgba(56, 142, 60, 0.7) 0%, rgba(76, 175, 80, 0.6) 25%, rgba(102, 187, 106, 0.5) 50%, rgba(129, 199, 132, 0.4) 75%, rgba(165, 214, 167, 0.3) 100%), 
-                url('img/istockphoto-2220086016-1024x1024.jpg') no-repeat center center/cover;
+    height: 600px;
     position: relative;
     display: flex;
     align-items: center;
@@ -175,25 +164,38 @@ p.subtitle {
     text-align: center;
     color: #fff;
     overflow: hidden;
-    animation: backgroundMove 20s ease-in-out infinite;
 }
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    animation: backgroundMove 40s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 
 @keyframes backgroundMove {
     0%, 100% { 
-        background-position: center center;
-        background-size: 100% 100%;
+        transform: scale(1) translate(0, 0);
     }
     25% { 
-        background-position: 20% 20%;
-        background-size: 110% 110%;
+        transform: scale(1.03) translate(-1%, -1%);
     }
     50% { 
-        background-position: 80% 80%;
-        background-size: 105% 105%;
+        transform: scale(1.02) translate(1%, 1%);
     }
     75% { 
-        background-position: 60% 40%;
-        background-size: 115% 115%;
+        transform: scale(1.04) translate(-0.5%, 0.5%);
     }
 }
 
@@ -204,9 +206,8 @@ p.subtitle {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="90" cy="90" r="0.8" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
-    opacity: 0.3;
-    animation: grainMove 20s linear infinite;
+    background: rgba(255, 255, 255, 0.35);
+    z-index: 2;
 }
 
 #hero::after {
@@ -219,11 +220,7 @@ p.subtitle {
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="floating" width="200" height="200" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="150" cy="100" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="100" cy="150" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="25" cy="175" r="1.2" fill="rgba(255,255,255,0.05)"/><circle cx="175" cy="25" r="0.8" fill="rgba(255,255,255,0.07)"/></pattern></defs><rect width="200" height="200" fill="url(%23floating)"/></svg>') repeat;
     opacity: 0.4;
     animation: floatingParticles 15s ease-in-out infinite;
-}
-
-@keyframes grainMove {
-    0% { transform: translateX(0) translateY(0); }
-    100% { transform: translateX(-100px) translateY(-100px); }
+    z-index: 4;
 }
 
 @keyframes floatingParticles {
@@ -245,6 +242,7 @@ p.subtitle {
     height: 100%;
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.2) 100%);
     animation: heroShimmer 3s ease-in-out infinite alternate;
+    z-index: 5;
 }
 
 @keyframes heroShimmer {
@@ -385,6 +383,11 @@ p.subtitle {
 }
 
 /* こだわり */
+#quality {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+}
+
 .quality-grid {
     display: flex;
     gap: 40px;
@@ -449,6 +452,11 @@ p.subtitle {
 }
 
 /* 事業内容 */
+#business {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+}
+
 .business-section, .selling-floor-section {
     margin-bottom: 60px;
 }
@@ -494,6 +502,11 @@ p.subtitle {
 }
 
 /* 店舗情報 */
+#stores {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+}
+
 .store-list-container {
     max-width: 800px;
     margin: 0 auto;
@@ -542,30 +555,22 @@ p.subtitle {
 }
 
 /* お問い合わせ */
+#contact {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+}
+
 .contact-section {
     text-align: center;
-}
-
-/* Contact section background */
-.contact-section {
-    background: url('img/istockphoto-1507564276-1024x1024.jpg') no-repeat center center/cover;
+    background-color: #f8f9fa;
     position: relative;
 }
 
-.contact-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.88) 0%, rgba(250,252,250,0.92) 100%);
-    z-index: 1;
-}
-
-.contact-section .container {
-    position: relative;
-    z-index: 2;
+.contact-section h2 {
+    color: #2e7d32;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
 }
 
 .contact-buttons {
@@ -630,6 +635,13 @@ p.subtitle {
     padding: 2px 0;
 }
 
+.box-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2e7d32;
+    font-size: 1.1rem;
+}
+
 .contact-button {
     display: block;
     width: 100%;
@@ -663,7 +675,6 @@ footer {
     padding: 40px 0 20px;
 }
 
-
 .copyright {
     text-align: center;
     font-size: 0.8rem;
@@ -676,9 +687,38 @@ footer {
         padding: 60px 0;
     }
 
+    /* ヒーローセクション - モバイル最適化 */
+    #hero {
+        height: 500px;
+        animation: none;                     /* 背景アニメーションを無効化 */
+    }
+    
+    /* モバイル用：白のオーバーレイを追加して明るく（PC版と同じ明るさ） */
+    #hero::before {
+        background: rgba(255, 255, 255, 0.35) !important;
+        z-index: 2 !important;
+    }
+    
+    /* モバイル用の背景画像最適化 */
+    #hero::after {
+        display: none;
+    }
+
+    /* ヒーローオーバーレイ - モバイルで薄く */
+    .hero-overlay {
+        background: linear-gradient(
+            45deg,
+            rgba(0, 0, 0, 0.08) 0%,
+            rgba(0, 0, 0, 0.02) 100%
+        );
+        opacity: 0.3;
+        animation: none;
+    }
+
     /* ヒーロー */
     .hero-text h1 {
         font-size: 2.5rem;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
     }
 
     /* 会社概要 */
@@ -721,12 +761,43 @@ footer {
     }
 }
 
+/* 小さなスマートフォン用の最適化 */
+@media (max-width: 480px) {
+    /* ヒーローセクション - 小さな画面での最適化 */
+    #hero {
+        height: 400px;
+        background-size: cover !important;   /* 画像の縦横比を維持して全面表示 */
+        background-position: center center !important;
+        animation: none;                     /* 背景アニメーションを無効化 */
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+        padding: 0 20px;
+        line-height: 1.2;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+    }
+    
+    .primary-button {
+        font-size: 1rem;
+        padding: 12px 24px;
+    }
+    
+    /* 背景画像の読み込み最適化 */
+    .bg-light-green,
+    .bg-stores {
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+}
+
 /* モバイルナビゲーション用 CSS */
 @media (max-width: 600px) {
     #nav {
-        display: none; /* デフォルトで非表示 */
+        display: none;
         position: absolute;
-        top: 70px; /* ヘッダーの高さに応じて調整 */
+        top: 70px;
         left: 0;
         width: 100%;
         background-color: #fff;
@@ -735,7 +806,7 @@ footer {
         text-align: center;
     }
     #nav.open {
-        display: block; /* メニューオープン時 */
+        display: block;
     }
     #nav ul {
         flex-direction: column;

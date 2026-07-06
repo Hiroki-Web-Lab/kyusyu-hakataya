@@ -1,0 +1,26 @@
+{
+    "name": "株式会社九州博多屋",
+    "short_name": "九州博多屋",
+    "description": "1995年創業の青果卸売業者。福岡を中心に6店舗を展開し、新鮮な野菜・果物をお客様にお届けしています。",
+    "icons": [
+        {
+            "src": "android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#388e3c",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/"
+}
+
+
+
+
+

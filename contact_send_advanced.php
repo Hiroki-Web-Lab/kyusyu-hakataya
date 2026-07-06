@@ -13,31 +13,33 @@ if (!isset($_POST['csrf_token']) || !isset($_SESSION['csrf_token']) || $_POST['c
     die('CSRF token validation failed.');
 }
 
-// reCAPTCHA検証
-$recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
-$recaptcha_secret = RECAPTCHA_SECRET_KEY;
+// reCAPTCHA検証（設定されている場合のみ）
+if (defined('RECAPTCHA_SECRET_KEY') && RECAPTCHA_SECRET_KEY !== 'your-recaptcha-secret-key') {
+    $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
+    $recaptcha_secret = RECAPTCHA_SECRET_KEY;
 
-$recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
-$recaptcha_data = [
-    'secret' => $recaptcha_secret,
-    'response' => $recaptcha_response,
-    'remoteip' => $_SERVER['REMOTE_ADDR']
-];
+    $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
+    $recaptcha_data = [
+        'secret' => $recaptcha_secret,
+        'response' => $recaptcha_response,
+        'remoteip' => $_SERVER['REMOTE_ADDR']
+    ];
 
-$recaptcha_options = [
-    'http' => [
-        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method' => 'POST',
-        'content' => http_build_query($recaptcha_data)
-    ]
-];
+    $recaptcha_options = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($recaptcha_data)
+        ]
+    ];
 
-$recaptcha_context = stream_context_create($recaptcha_options);
-$recaptcha_result = file_get_contents($recaptcha_url, false, $recaptcha_context);
-$recaptcha_json = json_decode($recaptcha_result, true);
+    $recaptcha_context = stream_context_create($recaptcha_options);
+    $recaptcha_result = file_get_contents($recaptcha_url, false, $recaptcha_context);
+    $recaptcha_json = json_decode($recaptcha_result, true);
 
-if (!$recaptcha_json['success'] || $recaptcha_json['score'] < 0.5) {
-    die('reCAPTCHA verification failed.');
+    if (!$recaptcha_json['success'] || $recaptcha_json['score'] < 0.5) {
+        die('reCAPTCHA verification failed.');
+    }
 }
 
 // 入力値の取得と検証
@@ -54,15 +56,46 @@ if (!$email || empty($name) || empty($message)) {
 try {
     $mail = new PHPMailer(true);
     
-    // SMTP設定
-    $mail->isSMTP();
-    $mail->Host = SMTP_HOST;
-    $mail->SMTPAuth = true;
-    $mail->Username = SMTP_USERNAME;
-    $mail->Password = SMTP_PASSWORD;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = SMTP_PORT;
-    $mail->CharSet = 'UTF-8';
+    // SMTP設定（設定されている場合のみ）
+    if (defined('SMTP_HOST') && defined('SMTP_USERNAME') && defined('SMTP_PASSWORD') && 
+        SMTP_HOST !== 'sv1237.xserver.jp' && SMTP_USERNAME !== 'kyushu-hakataya@kyusyu-hakataya.com' && 
+        SMTP_PASSWORD !== 'your-email-password') {
+        $mail->isSMTP();
+        $mail->Host = SMTP_HOST;
+        $mail->SMTPAuth = true;
+        $mail->Username = SMTP_USERNAME;
+        $mail->Password = SMTP_PASSWORD;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = SMTP_PORT;
+        $mail->CharSet = 'UTF-8';
+    } else {
+        // 基本的なメール送信（PHPのmail関数を使用）
+        $to = ADMIN_EMAIL;
+        $subject = "【お問い合わせ】{$type} - {$name}様";
+        $body = "
+お問い合わせ内容
+
+お名前: {$name}
+メールアドレス: {$email}
+お問い合わせ区分: {$type}
+お問い合わせ内容:
+{$message}
+
+送信日時: " . date('Y-m-d H:i:s') . "
+";
+        
+        $headers = "From: {$email}\r\n";
+        $headers .= "Reply-To: {$email}\r\n";
+        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+        
+        if (mail($to, $subject, $body, $headers)) {
+            // 成功ページへリダイレクト
+            header('Location: contact.html?sent=1');
+            exit;
+        } else {
+            throw new Exception('メール送信に失敗しました');
+        }
+    }
     
     // 管理者宛メール
     $mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);

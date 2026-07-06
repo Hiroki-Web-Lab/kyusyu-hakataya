@@ -1,26 +1,298 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google Tag Manager - 遅延ロード -->
+    <script>
+    // ユーザー操作または5秒後にGTMをロード
+    let gtmLoaded = false;
+    function loadGTM() {
+        if (gtmLoaded) return;
+        gtmLoaded = true;
+        
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5HXQ537T');
+    }
+    
+    // 5秒後に自動ロード
+    setTimeout(loadGTM, 5000);
+    
+    // ユーザー操作でロード
+    ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(function(event) {
+        document.addEventListener(event, loadGTM, { once: true, passive: true });
+    });
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>株式会社九州博多屋 - お客様を大切に、食を通じて笑顔を</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20241006">
+    <title>株式会社九州博多屋 | 新鮮な青果で笑顔をお届け</title>
+    
+    <!-- 基本SEO -->
+    <meta name="description" content="株式会社九州博多屋は、1974年創業の青果専門企業です。九州を中心に旬の野菜・果物をお届けし、地域に根ざした品質と信頼を大切にしています。">
+    <meta name="keywords" content="九州博多屋, 青果, 野菜, 果物, 卸売, 小売, 福岡, 博多, 鳥栖, 古賀, 松島, 八田, 野芥">
+    <meta name="author" content="株式会社九州博多屋">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="ja">
+    <meta name="geo.region" content="JP-40">
+    <meta name="geo.placename" content="福岡県">
+    
+    <!-- Open Graph (OG) -->
+    <meta property="og:title" content="株式会社九州博多屋 | 新鮮な青果をお届け">
+    <meta property="og:description" content="九州を中心に、旬の野菜・果物をお届けする青果専門店。1974年創業、地域に根ざした安心の品質。">
+    <meta property="og:image" content="https://kyusyu-hakataya.com/img/logo.webp">
+    <meta property="og:url" content="https://kyusyu-hakataya.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="株式会社九州博多屋">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="株式会社九州博多屋 | 新鮮な青果をお届け">
+    <meta name="twitter:description" content="九州を中心に、旬の野菜・果物をお届けする青果専門店。1974年創業、地域に根ざした安心の品質。">
+    <meta name="twitter:image" content="https://kyusyu-hakataya.com/img/logo.webp">
+    
+    <!-- 追加のSEO対策 -->
+    <meta name="theme-color" content="#ff6b35">
+    <meta name="msapplication-TileColor" content="#ff6b35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="九州博多屋">
+    
+    <!-- canonical URL -->
+    <link rel="canonical" href="https://kyusyu-hakataya.com/">
+    
+    <!-- JSON-LD (構造化データ) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "株式会社九州博多屋",
+      "url": "https://kyusyu-hakataya.com",
+      "logo": "https://kyusyu-hakataya.com/img/logo.webp",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+81-92-410-6454",
+        "contactType": "Customer Service",
+        "areaServed": "JP"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "福岡市東区みなと香椎3丁目1番1-211",
+        "addressLocality": "福岡市",
+        "postalCode": "813-0019",
+        "addressRegion": "福岡県",
+        "addressCountry": "JP"
+      },
+      "foundingDate": "1974-04",
+      "sameAs": [
+        "https://www.facebook.com/",
+        "https://x.com/"
+      ]
+    }
+    </script>
+    
+    <!-- パンくずリスト構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "ホーム",
+                "item": "https://kyusyu-hakataya.com/"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- LocalBusiness構造化データ（各店舗） -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "株式会社九州博多屋 サトー食品館 松島店",
+        "image": "https://kyusyu-hakataya.com/img/logo.webp",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "松島1丁目30-25",
+            "addressLocality": "福岡市東区",
+            "postalCode": "812-0062",
+            "addressCountry": "JP"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "33.623160",
+            "longitude": "130.426947"
+        },
+        "telephone": "+81-92-612-0850",
+        "openingHours": "Mo-Su 10:00-21:00",
+        "priceRange": "$$"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "株式会社九州博多屋 サトー食品館 八田店",
+        "image": "https://kyusyu-hakataya.com/img/logo.webp",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "土井1丁目7番",
+            "addressLocality": "福岡市東区",
+            "postalCode": "813-0032",
+            "addressCountry": "JP"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "33.634978",
+            "longitude": "130.460775"
+        },
+        "telephone": "+81-92-691-1898",
+        "openingHours": "Mo-Su 10:00-20:00",
+        "priceRange": "$$"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "株式会社九州博多屋 業務スーパー 古賀店",
+        "image": "https://kyusyu-hakataya.com/img/logo.webp",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "中央2丁目823-1",
+            "addressLocality": "福岡県古賀市",
+            "addressCountry": "JP"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "33.733864",
+            "longitude": "130.464769"
+        },
+        "telephone": "+81-92-710-9132",
+        "openingHours": "Mo-Su 09:00-21:00",
+        "priceRange": "$$"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "株式会社九州博多屋 業務スーパー 鳥栖店",
+        "image": "https://kyusyu-hakataya.com/img/logo.webp",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "元町1306-7",
+            "addressLocality": "佐賀県鳥栖市",
+            "addressCountry": "JP"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "33.374139",
+            "longitude": "130.495707"
+        },
+        "telephone": "+81-942-83-8020",
+        "openingHours": "Mo-Su 09:00-21:00",
+        "priceRange": "$$"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "株式会社九州博多屋 マックスバリュエクスプレス 野芥店",
+        "image": "https://kyusyu-hakataya.com/img/logo.webp",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "野芥4丁目45-61",
+            "addressLocality": "福岡市早良区",
+            "addressCountry": "JP"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "33.539902",
+            "longitude": "130.334873"
+        },
+        "telephone": "+81-92-863-1423",
+        "openingHours": "Mo-Su 00:00-24:00",
+        "priceRange": "$$"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="style.css?v=20241007">
+    
+    <!-- favicon -->
+    <link rel="icon" href="img/favicon/favicon.ico">
+    <link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+    
+    <!-- プリロード -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" as="style">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="img/logo.webp" as="image">
+    <link rel="preload" href="img/hero-768.webp" as="image" media="(max-width: 768px)">
+    <link rel="preload" href="img/hero-1920.webp" as="image" media="(min-width: 769px)">
+    
+    <!-- DNS プリフェッチ -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Google Search Console 認証用メタタグ（取得後に置き換えてください） -->
+    <meta name="google-site-verification" content="XXXXXXXXXXXXXXXXXXXXXXX" />
+    
+    <!-- Google tag (gtag.js) - Google Analytics 4 遅延ロード -->
+    <script>
+    // GAも遅延ロード
+    let gaLoaded = false;
+    function loadGA() {
+        if (gaLoaded) return;
+        gaLoaded = true;
+        
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    }
+    
+    // GTMと同様のタイミングでロード
+    setTimeout(loadGA, 5000);
+    ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(function(event) {
+        document.addEventListener(event, loadGA, { once: true, passive: true });
+    });
+    </script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HXQ537T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
     <header id="header">
         <div class="container header-content">
             <div class="logo">
-                <img src="img/kyusyu_hakataya_logo.pdf-1.jpg" alt="株式会社九州博多屋 ロゴ">
+                <img src="img/logo.webp" alt="九州博多屋 ロゴ - 福岡の青果店 1995年創業" loading="eager" onerror="console.log('Logo image failed to load'); this.style.display='none'; this.nextElementSibling.style.display='block';" onload="console.log('Logo image loaded successfully');">
+                <div style="display:none; font-size: 24px; font-weight: bold; color: #388e3c;">九州博多屋</div>
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="#about">会社概要</a></li>
-                    <li><a href="#quality">こだわり</a></li>
-                    <li><a href="#business">事業内容</a></li>
-                    <li><a href="#stores">店舗情報</a></li>
-                    <li><a href="#contact">お問い合わせ</a></li>
+                    <li><a href="#about" title="会社概要 - 九州博多屋の企業情報">会社概要</a></li>
+                    <li><a href="#quality" title="こだわり - 九州博多屋の品質への取り組み">こだわり</a></li>
+                    <li><a href="#business" title="事業内容 - 青果卸売業の詳細">事業内容</a></li>
+                    <li><a href="#stores" title="店舗情報 - 福岡の6店舗の詳細">店舗情報</a></li>
+                    <li><a href="contact.html" title="お問い合わせ - 九州博多屋へのご連絡">お問い合わせ</a></li>
                 </ul>
             </nav>
             <button class="menu-toggle"><span></span></button>
@@ -29,6 +301,13 @@
 
     <main>
         <section id="hero" class="hero-section">
+            <picture class="hero-background">
+                <source media="(max-width: 768px)" srcset="img/hero-768.avif" type="image/avif">
+                <source media="(max-width: 768px)" srcset="img/hero-768.webp" type="image/webp">
+                <source media="(min-width: 769px)" srcset="img/hero-1920.avif" type="image/avif">
+                <source media="(min-width: 769px)" srcset="img/hero-1920.webp" type="image/webp">
+                <img src="img/istockphoto-2220086016-1024x1024.jpg" alt="新鮮な野菜と果物" loading="eager">
+            </picture>
             <div class="hero-overlay"></div>
             <div class="container hero-text">
                 <h1>「食」を通じてお客様に笑顔を届ける</h1>
@@ -45,7 +324,7 @@
                         <dl>
                             <dt>会社名</dt><dd>株式会社九州博多屋</dd>
                             <dt>代表取締役</dt><dd>高丘 泰規</dd>
-                            <dt>設立年月</dt><dd>1974年4月</dd>
+                            <dt>設立年月</dt><dd>1995年3月</dd>
                             <dt>業種</dt><dd>青果小売業 / 卸売業</dd>
                             <dt>本社所在地</dt><dd>〒 813-0019 福岡市東区みなと香椎 3丁目1番1-211</dd>
                             <dt>TEL</dt><dd>092-410-6454</dd>
@@ -205,7 +484,7 @@
 
     <footer>
         <div class="container">
-            <p class="copyright">&copy; 1974 - 2024 Kyushu Hakataya Co., Ltd. All Rights Reserved.</p>
+            <p class="copyright">&copy; 1995 - 2024 Kyushu Hakataya Co., Ltd. All Rights Reserved.</p>
         </div>
     </footer>
 

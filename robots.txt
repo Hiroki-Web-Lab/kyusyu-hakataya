@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# サイトマップの場所を指定
+Sitemap: https://kyusyu-hakataya.com/sitemap.xml
+
+# クローリングを許可するディレクトリ
+Allow: /img/
+Allow: /css/
+Allow: /js/
+Allow: /*.css
+Allow: /*.js
+
+# クローリングを禁止するファイル
+Disallow: /contact_send*.php
+Disallow: /config.php
+Disallow: /vendor/
+Disallow: /*.log
+Disallow: /get_csrf_token.php
+
+# 管理・設定ファイルを除外
+Disallow: /GOOGLE_SETUP_GUIDE.md
+Disallow: /google_business_profile_info.txt
+Disallow: /*.plan.md
+
+# ユーザーエージェント別の設定（オプション）
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
