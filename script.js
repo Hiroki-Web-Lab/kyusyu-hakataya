@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ヒーローボタンのクリックイベント
-    const heroButton = document.querySelector('.primary-button');
+    const heroButton = document.querySelector('.hero-text .primary-button');
     if (heroButton) {
         heroButton.addEventListener('click', function(e) {
             e.preventDefault();
