@@ -12,23 +12,28 @@ function toggleMobileMenu() {
 
 // メニューリンククリック時の処理
 function handleNavClick(e) {
-    e.preventDefault();
     const targetId = e.target.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
     
-    if (targetElement) {
-        // スムーススクロール
-        targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+    // ハッシュリンク（同一ページ内のアンカー）のみスムーススクロール
+    if (targetId && targetId.startsWith('#')) {
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            // スムーススクロール
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // モバイルメニューを閉じる
+        if (nav.classList.contains('open')) {
+            nav.classList.remove('open');
+            menuToggle.classList.remove('active');
+        }
     }
-    
-    // モバイルメニューを閉じる
-    if (nav.classList.contains('open')) {
-        nav.classList.remove('open');
-        menuToggle.classList.remove('active');
-    }
+    // 他のページへのリンクはデフォルトの動作を許可
 }
 
 // 店舗情報のアコーディオン機能
@@ -102,6 +107,7 @@ function setupScrollAnimations() {
 
 // ページ読み込み完了時の初期化
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, script.js is working!');
     // イベントリスナーの設定
     if (menuToggle) {
         menuToggle.addEventListener('click', toggleMobileMenu);
@@ -144,6 +150,84 @@ document.addEventListener('DOMContentLoaded', function() {
     if (params.get('sent') === '1') {
         const success = document.getElementById('contact-success');
         if (success) success.style.display = 'block';
+    }
+
+    // フォーム送信処理
+    const contactForm = document.getElementById('form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // 二重送信防止
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            if (submitButton.disabled) {
+                return;
+            }
+
+            // フォームバリデーション
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('すべての項目を入力してください。');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                alert('有効なメールアドレスを入力してください。');
+                return;
+            }
+
+            // 送信ボタンを無効化
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = '送信中...';
+            
+            // フォームデータを送信
+            const formData = new FormData(contactForm);
+            console.log('Sending form data:', Object.fromEntries(formData));
+            
+            fetch('contact_send_simple.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                if (data.success) {
+                    // 成功メッセージを表示
+                    const successBox = document.getElementById('contact-success');
+                    if (successBox) {
+                        successBox.style.display = 'block';
+                        contactForm.style.display = 'none';
+                    }
+                    // フォームをリセット
+                    contactForm.reset();
+                } else {
+                    alert(data.error || '送信に失敗しました。');
+                }
+            })
+            .catch(error => {
+                console.error('送信エラー:', error);
+                alert('送信に失敗しました。時間をおいて再度お試しください。');
+            })
+            .finally(() => {
+                // 送信ボタンを元に戻す
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            });
+        });
+    }
+    
+    // メールアドレス検証関数
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 });
 
