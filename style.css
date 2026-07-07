@@ -984,3 +984,79 @@ footer {
         padding: 36px 24px 30px;
     }
 }
+
+/* 店舗ブランド見出し（九州博多屋／良菜果） */
+.store-brand-heading {
+    max-width: 800px;
+    margin: 0 auto 16px;
+    text-align: left;
+    color: #2e7d32;
+    font-size: 1.15rem;
+    font-weight: 700;
+    border-left: 4px solid var(--color-primary);
+    padding-left: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.store-brand-heading-ryosaika {
+    margin-top: 44px;
+    color: #1d6b3f;
+    border-left-color: #1d6b3f;
+}
+
+.store-brand-heading .brand-en {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: #888;
+    letter-spacing: 0.08em;
+}
+
+.store-brand-heading .brand-link {
+    margin-left: auto;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #1d6b3f;
+    text-decoration: underline;
+}
+
+.store-brand-heading .brand-link:hover {
+    opacity: 0.7;
+}
+
+/* 良菜果 Coming Soon 店舗カード */
+.store-name-ryosaika {
+    background-color: #1d6b3f;
+    color: #fff;
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.coming-soon-badge {
+    background: #e8762c;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 4px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.store-coming-soon-body {
+    padding: 16px 20px;
+    text-align: left;
+    color: #666;
+}
+
+.store-coming-soon-body p {
+    margin: 0;
+}
