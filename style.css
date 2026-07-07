@@ -827,3 +827,160 @@ footer {
         height: 40px;
     }
 }
+/* お問い合わせフォーム（リニューアル） */
+.contact-form .form-row {
+    margin-bottom: 20px;
+}
+
+.contact-form .form-row-half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-required {
+    display: inline-block;
+    background: #e8762c;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: 2px;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.15);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #aaa;
+}
+
+.form-privacy {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.form-privacy label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 400;
+    color: #666;
+    cursor: pointer;
+}
+
+.form-privacy input {
+    width: auto;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.contact-form button[type="submit"] {
+    padding-left: 64px;
+    padding-right: 64px;
+    cursor: pointer;
+}
+
+.form-status {
+    text-align: center;
+    margin: 14px 0 0;
+    font-weight: 700;
+    min-height: 1.5em;
+    color: var(--color-primary);
+}
+
+/* 送信結果モーダル */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal[hidden] {
+    display: none;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-box {
+    position: relative;
+    background: #fff;
+    border-radius: 18px;
+    padding: 44px 40px 36px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--color-primary);
+    margin: 0 auto 20px;
+}
+
+.modal-error .modal-icon {
+    background: #c0392b;
+}
+
+.modal-message {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 26px;
+    color: var(--color-text);
+    white-space: pre-line;
+}
+
+.modal-close {
+    cursor: pointer;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .contact-form .form-row-half {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .modal-box {
+        padding: 36px 24px 30px;
+    }
+}

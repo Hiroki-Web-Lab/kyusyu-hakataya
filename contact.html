@@ -191,42 +191,74 @@
                     <p class="box-title">メールでのお問い合わせ</p>
                     <form id="form" action="contact_send_simple.php" method="post" class="contact-form"
                         style="margin:0;">
-                        <div class="form-row" style="margin-bottom:16px;">
-                            <label for="name">お名前</label>
-                            <input type="text" id="name" name="name" required
-                                style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;">
-                        </div>
-                        <div class="form-row" style="margin-bottom:16px;">
-                            <label for="email">メールアドレス</label>
-                            <input type="email" id="email" name="email" required
-                                style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;">
-                        </div>
-                        <div class="form-row" style="margin-bottom:16px;">
-                            <label for="type">お問い合わせ区分</label>
-                            <select id="type" name="type"
-                                style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;">
+                        <!-- ハニーポット（スパム対策・人間には見えない） -->
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+                            style="position:absolute;left:-9999px;">
+                        <div class="form-row">
+                            <label for="type">お問い合わせ種別 <span class="form-required">必須</span></label>
+                            <select id="type" name="type" required>
+                                <option value="">選択してください</option>
                                 <option value="b2b">業務用取引</option>
-                                <option value="recruit">採用</option>
+                                <option value="recruit-full">採用応募（正社員）</option>
+                                <option value="recruit-part">採用応募（パート・アルバイト）</option>
+                                <option value="store">商品・店舗について</option>
                                 <option value="other">その他</option>
                             </select>
                         </div>
-                        <div class="form-row" style="margin-bottom:16px;">
-                            <label for="message">内容</label>
-                            <textarea id="message" name="message" rows="6"
-                                style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;"></textarea>
+                        <div class="form-row form-row-half">
+                            <div>
+                                <label for="name">お名前 <span class="form-required">必須</span></label>
+                                <input type="text" id="name" name="name" required autocomplete="name"
+                                    placeholder="例）博多 太郎">
+                            </div>
+                            <div>
+                                <label for="kana">ふりがな</label>
+                                <input type="text" id="kana" name="kana" autocomplete="off"
+                                    placeholder="例）はかた たろう">
+                            </div>
+                        </div>
+                        <div class="form-row form-row-half">
+                            <div>
+                                <label for="email">メールアドレス <span class="form-required">必須</span></label>
+                                <input type="email" id="email" name="email" required autocomplete="email"
+                                    placeholder="例）example@email.com">
+                            </div>
+                            <div>
+                                <label for="tel">電話番号</label>
+                                <input type="tel" id="tel" name="tel" autocomplete="tel"
+                                    placeholder="例）090-1234-5678">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="message">メッセージ <span class="form-required">必須</span></label>
+                            <textarea id="message" name="message" rows="6" required
+                                placeholder="採用応募の場合は、希望職種・希望勤務時間などをご記入ください。"></textarea>
+                        </div>
+                        <div class="form-privacy">
+                            <label>
+                                <input type="checkbox" id="agree" required>
+                                ご入力いただいた個人情報は、お問い合わせへの対応および採用選考の目的にのみ使用します。
+                            </label>
                         </div>
                         <div style="text-align:center;">
                             <button type="submit" class="button primary-button">送信する</button>
                         </div>
+                        <p class="form-status" id="formStatus" role="status"></p>
                     </form>
-                </div>
-                <div id="contact-success" class="info-box" style="max-width:720px;margin:16px auto 0; display:none;">
-                    <p class="box-title" style="margin-bottom:6px;">送信完了</p>
-                    <p style="margin:0;">お問い合わせを受け付けました。担当者より折り返しご連絡いたします。</p>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- 送信結果モーダル -->
+    <div class="modal" id="resultModal" role="alertdialog" aria-modal="true" aria-labelledby="modalMessage" hidden>
+        <div class="modal-overlay" data-modal-close></div>
+        <div class="modal-box">
+            <div class="modal-icon" id="modalIcon" aria-hidden="true">✓</div>
+            <p class="modal-message" id="modalMessage"></p>
+            <button type="button" class="button primary-button modal-close" data-modal-close>閉じる</button>
+        </div>
+    </div>
 
     <footer>
         <div class="container">

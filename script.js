@@ -145,15 +145,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // (removed) quick links handler
 
-    // If redirected with ?sent=1, show success box
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('sent') === '1') {
-        const success = document.getElementById('contact-success');
-        if (success) success.style.display = 'block';
+    // 送信結果モーダル
+    const modal = document.getElementById('resultModal');
+    const modalIcon = document.getElementById('modalIcon');
+    const modalMessage = document.getElementById('modalMessage');
+
+    function showModal(message, isError) {
+        if (!modal) return;
+        modalMessage.textContent = message;
+        modalIcon.textContent = isError ? '!' : '✓';
+        modal.classList.toggle('modal-error', Boolean(isError));
+        modal.hidden = false;
+        modal.querySelector('.modal-close').focus();
+    }
+
+    function hideModal() {
+        if (modal) modal.hidden = true;
+    }
+
+    if (modal) {
+        modal.querySelectorAll('[data-modal-close]').forEach(function(el) {
+            el.addEventListener('click', hideModal);
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.hidden) hideModal();
+        });
     }
 
     // フォーム送信処理
     const contactForm = document.getElementById('form');
+    const formStatus = document.getElementById('formStatus');
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -165,70 +186,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // フォームバリデーション
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            if (!name || !email || !message) {
-                alert('すべての項目を入力してください。');
-                return;
-            }
-
-            if (!isValidEmail(email)) {
-                alert('有効なメールアドレスを入力してください。');
-                return;
-            }
-
             // 送信ボタンを無効化
             const originalText = submitButton.textContent;
             submitButton.disabled = true;
             submitButton.textContent = '送信中...';
-            
+            if (formStatus) formStatus.textContent = '送信中…';
+
             // フォームデータを送信
             const formData = new FormData(contactForm);
-            console.log('Sending form data:', Object.fromEntries(formData));
-            
+
             fetch('contact_send_simple.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                console.log('Response status:', response.status);
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log('Response data:', data);
                 if (data.success) {
-                    // 成功メッセージを表示
-                    alert('お問い合わせを送信しました。\n担当者より折り返しご連絡いたします。');
-                    const successBox = document.getElementById('contact-success');
-                    if (successBox) {
-                        successBox.style.display = 'block';
-                        contactForm.style.display = 'none';
-                    }
-                    // フォームをリセット
+                    showModal('送信されました。\nお問い合わせありがとうございます。\n担当者より折り返しご連絡いたします。', false);
                     contactForm.reset();
                 } else {
-                    alert(data.error || '送信に失敗しました。');
+                    showModal(data.error || '送信に失敗しました。\n時間をおいて再度お試しください。', true);
                 }
             })
             .catch(error => {
                 console.error('送信エラー:', error);
-                alert('送信に失敗しました。時間をおいて再度お試しください。');
+                showModal('送信に失敗しました。\n時間をおいて再度お試しください。', true);
             })
             .finally(() => {
                 // 送信ボタンを元に戻す
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
+                if (formStatus) formStatus.textContent = '';
             });
         });
-    }
-    
-    // メールアドレス検証関数
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
     }
 });
 
