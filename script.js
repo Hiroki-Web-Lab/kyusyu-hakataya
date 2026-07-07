@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Response data:', data);
                 if (data.success) {
                     // 成功メッセージを表示
+                    alert('お問い合わせを送信しました。\n担当者より折り返しご連絡いたします。');
                     const successBox = document.getElementById('contact-success');
                     if (successBox) {
                         successBox.style.display = 'block';
