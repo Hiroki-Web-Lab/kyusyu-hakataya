@@ -1007,6 +1007,13 @@ footer {
     border-left-color: #1d6b3f;
 }
 
+.store-brand-heading .brand-mark {
+    width: 26px;
+    height: 27px;
+    align-self: center;
+    flex-shrink: 0;
+}
+
 .store-brand-heading .brand-en {
     font-size: 0.78rem;
     font-weight: 400;
