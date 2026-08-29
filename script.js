@@ -2,7 +2,7 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#nav');
 const navLinks = document.querySelectorAll('#nav a');
-const storeNames = document.querySelectorAll('.store-name');
+const storeNames = document.querySelectorAll('.store-name, .store-name-ryosaika');
 
 // モバイルメニューの開閉
 function toggleMobileMenu() {
