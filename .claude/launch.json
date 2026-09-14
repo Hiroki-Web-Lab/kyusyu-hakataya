@@ -19,7 +19,7 @@
       "runtimeArgs": [
         "-y",
         "http-server",
-        "D:/Hiroki/Dropbox/バイブコーディング/良菜果LP",
+        "../良菜果LP",
         "-p",
         "8091",
         "-c-1"
