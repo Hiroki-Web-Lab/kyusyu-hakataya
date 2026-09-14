@@ -7,7 +7,7 @@
     <!-- トップページ -->
     <url>
         <loc>https://kyusyu-hakataya.com/</loc>
-        <lastmod>2025-10-10</lastmod>
+        <lastmod>2026-09-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -47,7 +47,7 @@
     <!-- 店舗情報セクション -->
     <url>
         <loc>https://kyusyu-hakataya.com/#stores</loc>
-        <lastmod>2025-10-10</lastmod>
+        <lastmod>2026-09-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

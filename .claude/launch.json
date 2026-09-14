@@ -1,0 +1,30 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "static-server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "http-server",
+        "-p",
+        "8090",
+        "-c-1"
+      ],
+      "port": 8090
+    },
+    {
+      "name": "lp-server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "http-server",
+        "D:/Hiroki/Dropbox/バイブコーディング/良菜果LP",
+        "-p",
+        "8091",
+        "-c-1"
+      ],
+      "port": 8091
+    }
+  ]
+}

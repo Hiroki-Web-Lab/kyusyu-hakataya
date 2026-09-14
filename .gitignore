@@ -31,3 +31,6 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Claude Code ローカル設定
+.claude/settings.local.json

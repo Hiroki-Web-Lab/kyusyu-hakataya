@@ -1064,3 +1064,17 @@ footer {
 .store-coming-soon-body p {
     margin: 0;
 }
+
+/* 2026-09-11 良菜果 開店のお知らせ */
+.opening-news { padding: 48px 0; background: #faf7f0; color: #2b2b26; }
+.opening-news__inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; }
+.opening-news__date { color: #8e3d0b; font-weight: bold; margin-bottom: 10px; }
+.opening-news h2 { color: #14522f; text-align: left; font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.6; margin: 0 0 16px; }
+.opening-news h2::after { display: none; }
+.opening-news p { line-height: 1.9; }
+.opening-news .button { margin-top: 22px; background: #1d6b3f; color: #fff; }
+.opening-news img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.opening-news__break { display: none; }
+.store-open-badge { font-size: .75rem; color: #14522f; background: #faf7f0; border-radius: 4px; padding: 4px 10px; white-space: nowrap; }
+.store-opening-photo { display: block; width: 100%; max-width: 640px; height: auto; margin-bottom: 20px; border-radius: 8px; }
+@media (max-width: 768px) { .opening-news__inner { grid-template-columns: 1fr; gap: 24px; } .opening-news { padding: 32px 0; } .opening-news__break { display: inline; } }

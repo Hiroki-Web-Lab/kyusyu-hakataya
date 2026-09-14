@@ -229,7 +229,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="style.css?v=20260829">
+    <link rel="stylesheet" href="style.css?v=20260911">
 
     <!-- favicon -->
     <link rel="icon" href="img/favicon/favicon.ico">
@@ -237,7 +237,7 @@
     
     <!-- プリロード -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" as="style">
-    <link rel="preload" href="style.css?v=20260829" as="style">
+    <link rel="preload" href="style.css?v=20260911" as="style">
     <link rel="preload" href="img/logo.webp" as="image">
     <link rel="preload" href="img/hero-768.webp" as="image" media="(max-width: 768px)">
     <link rel="preload" href="img/hero-1920.webp" as="image" media="(min-width: 769px)">
@@ -314,6 +314,13 @@
                 <a href="#stores" class="button primary-button">お近くの店舗を見る</a>
             </div>
         </section>
+
+        <aside class="opening-news" aria-labelledby="opening-news-title">
+            <div class="container opening-news__inner">
+                <div><p class="opening-news__date">2026.09.11</p><h2 id="opening-news-title">良菜果 イオン福岡東店が<br class="opening-news__break">オープンしました</h2><p>毎日の食卓にうれしい野菜・果物から、贈り物におすすめの果物まで。<br>イオン福岡東ショッピングセンターで、皆さまのご来店をお待ちしております。</p><a href="https://ryosaika.com/" class="button primary-button">良菜果の店舗・商品を見る</a></div>
+                <img src="img/ryosaika-store-opening.webp" width="1200" height="900" alt="良菜果の看板と野菜売場。イオン福岡東店がオープンしました" loading="lazy">
+            </div>
+        </aside>
 
         <section id="about" class="section">
             <div class="container">
@@ -474,12 +481,16 @@
                     <a href="https://ryosaika.com/" class="brand-link" target="_blank" rel="noopener">ブランドサイトを見る</a>
                 </h3>
                 <div class="store-list-container">
-                    <div class="store-item store-coming-soon">
+                    <div class="store-item store-ryosaika">
                         <h4 class="store-name-ryosaika">良菜果 イオン福岡東店
-                            <span class="coming-soon-badge">Coming Soon</span>
+                            <span class="store-open-badge">2026.9.11 OPEN</span>
                         </h4>
                         <div class="store-details">
-                            <p><strong>オープン:</strong> 2026年9月11日（金）</p>
+                            <img class="store-opening-photo" src="img/ryosaika-store-opening.webp" width="1200" height="900" alt="良菜果 イオン福岡東店の看板と野菜売場" loading="lazy">
+                            <p><strong>開業日:</strong> 2026年9月11日（金）</p>
+                            <p><strong>営業時間:</strong> 9:00〜19:00</p>
+                            <p><strong>TEL:</strong> <a href="tel:0929822554">092-982-2554</a></p>
+                            <p><a href="https://ryosaika.com/">良菜果の店舗・商品を見る</a></p>
                             <p><strong>所在地:</strong> 福岡県糟屋郡志免町別府北２丁目１４−１</p>
                             <div class="google-map-embed">
                                 <iframe src="https://maps.google.com/maps?q=%E3%82%A4%E3%82%AA%E3%83%B3%E7%A6%8F%E5%B2%A1%E6%9D%B1%E3%82%B7%E3%83%A7%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC&z=15&hl=ja&output=embed" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
