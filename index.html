@@ -229,7 +229,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="style.css?v=20260911">
+    <link rel="stylesheet" href="style.css?v=20260914">
 
     <!-- favicon -->
     <link rel="icon" href="img/favicon/favicon.ico">
@@ -237,7 +237,7 @@
     
     <!-- プリロード -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" as="style">
-    <link rel="preload" href="style.css?v=20260911" as="style">
+    <link rel="preload" href="style.css?v=20260914" as="style">
     <link rel="preload" href="img/logo.webp" as="image">
     <link rel="preload" href="img/hero-768.webp" as="image" media="(max-width: 768px)">
     <link rel="preload" href="img/hero-1920.webp" as="image" media="(min-width: 769px)">
@@ -283,8 +283,10 @@
     <header id="header">
         <div class="container header-content">
             <div class="logo">
-                <img src="img/logo.webp" alt="九州博多屋 ロゴ - 福岡の青果店 1995年創業" loading="eager" onerror="console.log('Logo image failed to load'); this.style.display='none'; this.nextElementSibling.style.display='block';" onload="console.log('Logo image loaded successfully');">
-                <div style="display:none; font-size: 24px; font-weight: bold; color: #388e3c;">九州博多屋</div>
+                <a href="#hero" aria-label="株式会社九州博多屋 ホーム">
+                    <img src="img/logo.webp" alt="九州博多屋 ロゴ - 福岡の青果店 1995年創業" loading="eager" onerror="console.log('Logo image failed to load'); this.style.display='none'; this.nextElementSibling.style.display='block';" onload="console.log('Logo image loaded successfully');">
+                    <div style="display:none; font-size: 24px; font-weight: bold; color: #388e3c;">九州博多屋</div>
+                </a>
             </div>
             <nav id="nav">
                 <ul>
@@ -521,6 +523,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260829"></script>
+    <script src="script.js?v=20260914"></script>
 </body>
 </html>

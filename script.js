@@ -1,7 +1,7 @@
 // DOM要素の取得
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#nav');
-const navLinks = document.querySelectorAll('#nav a');
+const navLinks = document.querySelectorAll('#nav a, .logo a');
 const storeNames = document.querySelectorAll('.store-name, .store-name-ryosaika');
 
 // モバイルメニューの開閉
@@ -12,14 +12,17 @@ function toggleMobileMenu() {
 
 // メニューリンククリック時の処理
 function handleNavClick(e) {
-    const targetId = e.target.getAttribute('href');
+    const targetId = e.currentTarget.getAttribute('href');
     
     // ハッシュリンク（同一ページ内のアンカー）のみスムーススクロール
     if (targetId && targetId.startsWith('#')) {
         e.preventDefault();
         const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
+
+        if (e.currentTarget.closest('.logo')) {
+            // ロゴクリックはページ最上部へ戻す（固定ヘッダー分の余白を残さない）
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (targetElement) {
             // スムーススクロール
             targetElement.scrollIntoView({
                 behavior: 'smooth',

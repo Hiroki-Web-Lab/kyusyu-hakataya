@@ -118,6 +118,13 @@ p.subtitle {
     align-items: center;
 }
 
+.logo a {
+    display: inline-block;
+    line-height: 0;
+    text-decoration: none;
+    color: inherit;
+}
+
 .logo img {
     height: 60px;
     max-width: 300px;
