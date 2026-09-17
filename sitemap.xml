@@ -20,36 +20,4 @@
         <priority>0.8</priority>
     </url>
     
-    <!-- 会社概要セクション -->
-    <url>
-        <loc>https://kyusyu-hakataya.com/#about</loc>
-        <lastmod>2025-10-10</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- こだわりセクション -->
-    <url>
-        <loc>https://kyusyu-hakataya.com/#quality</loc>
-        <lastmod>2025-10-10</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- 事業内容セクション -->
-    <url>
-        <loc>https://kyusyu-hakataya.com/#business</loc>
-        <lastmod>2025-10-10</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- 店舗情報セクション -->
-    <url>
-        <loc>https://kyusyu-hakataya.com/#stores</loc>
-        <lastmod>2026-09-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
 </urlset>
