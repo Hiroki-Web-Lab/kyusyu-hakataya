@@ -27,22 +27,30 @@
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options DENY
-    Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>
+
+# 内部向けファイル（メモ・ログ・バックアップ）は公開しない
+<FilesMatch "\.(md|log|bak)$">
+    Require all denied
+</FilesMatch>
+<Files "google_business_profile_info.txt">
+    Require all denied
+</Files>
 
 # リダイレクト設定
 RewriteEngine On
 
 # wwwなしのURLに統一
-RewriteCond %{HTTP_HOST} ^www\.kyusyu-hakataya\.com [NC]
+RewriteCond %{HTTP_HOST} ^www\.kyusyu-hakataya\.com$ [NC]
 RewriteRule ^(.*)$ https://kyusyu-hakataya.com/$1 [R=301,L]
 
-# HTTPSにリダイレクト
+# HTTPSにリダイレクト（転送先ホストは固定）
 RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^(.*)$ https://kyusyu-hakataya.com%{REQUEST_URI} [L,R=301]
 
-# 末尾スラッシュの統一
-RewriteCond %{REQUEST_FILENAME} !-f
+# 末尾スラッシュの統一（実在するディレクトリのみ。存在しないパスは 404 のまま）
+RewriteCond %{REQUEST_FILENAME} -d
 RewriteCond %{REQUEST_URI} !/$
-RewriteRule ^(.*)$ $1/ [R=301,L]
+RewriteRule ^(.*)$ https://kyusyu-hakataya.com/$1/ [R=301,L]

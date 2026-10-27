@@ -1,15 +1,18 @@
 <?php
-// セッション開始
-session_start();
+mb_internal_encoding('UTF-8');
 
 header('Content-Type: application/json; charset=UTF-8');
 
-// POST以外は拒否
+// POST以外は拒否（セッションは開始しない）
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => '不正なリクエストです。']);
     exit;
 }
+
+// セッション開始（Cookieは HTTPSのみ・JSから読めない・同一サイトのみ）
+session_set_cookie_params(['path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'Lax']);
+session_start();
 
 // 同一サイトからの送信かを確認（CSRF対策）
 $allowedHosts = ['kyusyu-hakataya.com', 'www.kyusyu-hakataya.com'];
@@ -30,8 +33,10 @@ if (empty($_SESSION['csrf_token']) || !is_string($token)
     exit;
 }
 
-// 連続送信の制限（同一セッションから60秒に1通まで）
-if (isset($_SESSION['last_contact_sent']) && (time() - $_SESSION['last_contact_sent']) < 60) {
+// 連続送信の制限（同一セッション・同一IPから60秒に1通まで）
+$rateFile = sys_get_temp_dir() . '/kyusyu_hakataya_contact_' . hash('sha256', $_SERVER['REMOTE_ADDR'] ?? 'unknown');
+if ((isset($_SESSION['last_contact_sent']) && (time() - $_SESSION['last_contact_sent']) < 60)
+    || (is_file($rateFile) && (time() - filemtime($rateFile)) < 60)) {
     http_response_code(429);
     echo json_encode(['error' => '送信間隔が短すぎます。しばらく時間をおいて再度お試しください。']);
     exit;
@@ -44,13 +49,17 @@ if (!empty($_POST['website'] ?? '')) {
     exit;
 }
 
-// 基本的な入力値の取得
-$name = trim($_POST['name'] ?? '');
-$kana = trim($_POST['kana'] ?? '');
-$email = trim($_POST['email'] ?? '');
-$tel = trim($_POST['tel'] ?? '');
-$type = trim($_POST['type'] ?? '');
-$message = trim($_POST['message'] ?? '');
+// 基本的な入力値の取得（配列などの文字列以外は空として扱う）
+$input = function (string $key): string {
+    $value = $_POST[$key] ?? '';
+    return is_string($value) ? trim($value) : '';
+};
+$name = $input('name');
+$kana = $input('kana');
+$email = $input('email');
+$tel = $input('tel');
+$type = $input('type');
+$message = $input('message');
 
 // メールヘッダー・件名に入る値から改行を除去（ヘッダーインジェクション対策）
 $name = str_replace(["\r", "\n"], '', $name);
@@ -96,7 +105,8 @@ $typeLabel = $labels[$type];
 
 // 管理者宛メール
 $to = 'kyushu-hakataya@kyusyu-hakataya.com';
-$subject = "【お問い合わせ】{$typeLabel} - {$name}様";
+// 件名は日本語を含むため MIME エンコードする
+$subject = mb_encode_mimeheader("【お問い合わせ】{$typeLabel} - {$name}様", 'UTF-8', 'B');
 $body = "お問い合わせ内容\n\n";
 $body .= "お名前: {$name}\n";
 if ($kana !== '') {
@@ -120,6 +130,7 @@ $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 if (mail($to, $subject, $body, $headers, '-f noreply@kyusyu-hakataya.com')) {
     // 成功レスポンス
     $_SESSION['last_contact_sent'] = time();
+    @touch($rateFile);
     http_response_code(200);
     echo json_encode(['success' => true, 'message' => 'お問い合わせを受け付けました。']);
 } else {
