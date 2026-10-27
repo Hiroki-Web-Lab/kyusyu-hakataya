@@ -198,9 +198,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // フォームデータを送信
             const formData = new FormData(contactForm);
 
-            fetch('contact_send_simple.php', {
-                method: 'POST',
-                body: formData
+            // CSRFトークンを取得してから送信
+            fetch('get_csrf_token.php', { credentials: 'same-origin' })
+            .then(response => response.json())
+            .then(tokenData => {
+                formData.append('csrf_token', tokenData.csrf_token);
+                return fetch('contact_send_simple.php', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin'
+                });
             })
             .then(response => response.json())
             .then(data => {
